@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AS-2: Lead Qualification Process | Buzzworks VA</title>
+    <script>
+        function showTab(evt, tabName) {
+            // Get all tab contents and hide them
+            var tabContents = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Get all tab buttons and remove active class
+            var tabButtons = document.getElementsByClassName('tab-button');
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Show the selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to the clicked button
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sage: #8b9d83;
+            --peach: #f6b5a7;
+            --mint: #c9d8c5;
+            --cream: #f8f9f6;
+            --dark: #2d3e2d;
+            --text: #3d4d3d;
+            --hot: #ff6b6b;
+            --warm: #ffa94d;
+            --cold: #74c0fc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--mint) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--peach);
+        }
+
+        .section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            color: var(--sage);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--mint);
+        }
+
+        .section h3 {
+            color: var(--dark);
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .bant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .bant-card {
+            background: linear-gradient(135deg, var(--cream) 0%, white 100%);
+            border: 3px solid var(--mint);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .bant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-color: var(--sage);
+        }
+
+        .bant-letter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--sage);
+            margin-bottom: 0.5rem;
+        }
+
+        .bant-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .bant-description {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .bant-questions {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--peach);
+        }
+
+        .bant-questions li {
+            margin: 0.5rem 0;
+            padding-left: 0.5rem;
+        }
+
+        .flowchart {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .flow-step {
+            background: var(--cream);
+            border: 2px solid var(--sage);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 500px;
+            position: relative;
+            text-align: center;
+        }
+
+        .flow-step::after {
+            content: '↓';
+            display: block;
+            font-size: 2rem;
+            color: var(--sage);
+            margin-top: 1rem;
+        }
+
+        .flow-step:last-child::after {
+            content: '';
+        }
+
+        .flow-decision {
+            background: #fff8e1;
+            border: 2px solid var(--warm);
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 500px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .flow-branches {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .flow-yes {
+            background: #e8f5e8;
+            border: 2px solid #51cf66;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .flow-no {
+            background: #ffe8e8;
+            border: 2px solid #ff6b6b;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .timeline-badges {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .timeline-badge {
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 200px;
+            font-weight: 600;
+        }
+
+        .timeline-hot {
+            background: var(--hot);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255,107,107,0.3);
+        }
+
+        .timeline-warm {
+            background: var(--warm);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255,169,77,0.3);
+        }
+
+        .timeline-cold {
+            background: var(--cold);
+            color: white;
+            box-shadow: 0 4px 12px rgba(116,192,252,0.3);
+        }
+
+        .question-bank {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .question-category {
+            background: var(--cream);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--sage);
+        }
+
+        .question-category h4 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .question-item {
+            background: white;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .red-flag-box {
+            background: #ffe8e8;
+            border: 3px solid #ff6b6b;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .red-flag-item {
+            background: white;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b6b;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .red-flag-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .buyer-seller-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: var(--cream);
+            border: 2px solid var(--mint);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .tab-button:hover {
+            background: var(--mint);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--mint) 100%);
+            color: white;
+            border-color: var(--sage);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, var(--mint) 0%, var(--cream) 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--sage);
+        }
+
+        .tip-box strong {
+            color: var(--dark);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .qualification-score {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 2px solid var(--mint);
+        }
+
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .score-table th {
+            background: var(--sage);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .score-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--mint);
+        }
+
+        .score-table tr:hover {
+            background: var(--cream);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .bant-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-branches {
+                grid-template-columns: 1fr;
+            }
+
+            .buyer-seller-tabs {
+                flex-direction: column;
+            }
+
+            .question-bank {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .interactive-note {
+            background: linear-gradient(135deg, var(--peach) 0%, #ffd4c9 100%);
+            color: var(--dark);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            font-weight: 500;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">BUZZWORKS VA</div>
+        <h1>MODULE AS-2</h1>
+        <div class="subtitle">Lead Qualification Process</div>
+        <div class="meta-info">
+            <div class="meta-item">
+                <span>⏱️</span>
+                <span>Duration: 4 Hours</span>
+            </div>
+            <div class="meta-item">
+                <span>📚</span>
+                <span>Week 2 - Role-Specific Training</span>
+            </div>
+            <div class="meta-item">
+                <span>🎯</span>
+                <span>Phase 2A</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>The Art and Science of Lead Qualification</h2>
+            <p>Not every lead is worth your time, and more importantly, not every lead is ready for your agent's expertise. The ability to qualify leads effectively is what separates average appointment setters from exceptional ones. In this module, you'll master the BANT framework and learn exactly which questions to ask to determine if a lead is hot, warm, or cold.</p>
+            
+            <div class="tip-box" style="margin-top: 1.5rem;">
+                <strong>🎯 Your Core Objective:</strong>
+                Book appointments with motivated, qualified prospects who have a high likelihood of converting into deals. Quality always beats quantity.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>The BANT Framework: Your Qualification Foundation</h2>
+            
+            <p>BANT is a proven sales qualification methodology that helps you quickly assess whether a lead is worth pursuing. It stands for Budget, Authority, Need, and Timeline. Master these four pillars, and you'll never waste time on unqualified leads again.</p>
+
+            <div class="bant-grid">
+                <div class="bant-card">
+                    <div class="bant-letter">B</div>
+                    <div class="bant-title">Budget</div>
+                    <div class="bant-description">Can they afford to buy or sell? Do they have financing in place? Understanding their financial readiness is crucial.</div>
+                    <div class="bant-questions">
+                        <strong>Key Questions:</strong>
+                        <ul>
+                            <li>Are you pre-approved with a lender?</li>
+                            <li>What's your budget or price range?</li>
+                            <li>Do you have your down payment ready?</li>
+                            <li>Are you selling your current home first?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bant-card">
+                    <div class="bant-letter">A</div>
+                    <div class="bant-title">Authority</div>
+                    <div class="bant-description">Are they the decision maker? Can they commit without consulting others? You need to speak with the person who can say "yes."</div>
+                    <div class="bant-questions">
+                        <strong>Key Questions:</strong>
+                        <ul>
+                            <li>Are you buying/selling alone or with a partner?</li>
+                            <li>Will anyone else be involved in this decision?</li>
+                            <li>Do you need to consult family members?</li>
+                            <li>Are all decision makers available for the appointment?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bant-card">
+                    <div class="bant-letter">N</div>
+                    <div class="bant-title">Need</div>
+                    <div class="bant-description">What's their motivation? Why now? Understanding their pain points and desires helps you position the value of meeting with your agent.</div>
+                    <div class="bant-questions">
+                        <strong>Key Questions:</strong>
+                        <ul>
+                            <li>What's prompting this decision?</li>
+                            <li>What's most important to you?</li>
+                            <li>What challenges are you facing?</li>
+                            <li>What would an ideal outcome look like?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bant-card">
+                    <div class="bant-letter">T</div>
+                    <div class="bant-title">Timeline</div>
+                    <div class="bant-description">When do they want to move forward? Urgency determines priority. Immediate needs are hot leads; "someday" is a cold lead.</div>
+                    <div class="bant-questions">
+                        <strong>Key Questions:</strong>
+                        <ul>
+                            <li>What's your ideal timeline?</li>
+                            <li>Do you have a specific move-by date?</li>
+                            <li>What's driving your timeline?</li>
+                            <li>Is there anything preventing you from moving sooner?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Pro Tip:</strong>
+                You don't need perfect scores in all four areas. A buyer with a 6-month timeline (warm) but strong budget and need can still be a great lead. Use BANT as a guide, not a rigid filter.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Timeline Classification: Hot, Warm, Cold</h2>
+            
+            <p>Timeline is often the most critical factor in lead prioritization. Here's how to categorize leads based on their urgency:</p>
+
+            <div class="timeline-badges">
+                <div class="timeline-badge timeline-hot">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔥 HOT</div>
+                    <div style="font-size: 1.2rem;">0-30 Days</div>
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.9;">Immediate need. Priority booking.</div>
+                </div>
+
+                <div class="timeline-badge timeline-warm">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌡️ WARM</div>
+                    <div style="font-size: 1.2rem;">1-6 Months</div>
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.9;">Planning phase. Regular follow-up.</div>
+                </div>
+
+                <div class="timeline-badge timeline-cold">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">❄️ COLD</div>
+                    <div style="font-size: 1.2rem;">6-12+ Months</div>
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.9;">Future consideration. Nurture campaign.</div>
+                </div>
+            </div>
+
+            <div class="qualification-score">
+                <h3>How to Handle Each Temperature</h3>
+                <table class="score-table">
+                    <thead>
+                        <tr>
+                            <th>Lead Type</th>
+                            <th>Action Plan</th>
+                            <th>Appointment Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>🔥 HOT (0-30 days)</strong></td>
+                            <td>Book appointment ASAP, within 24-48 hours. Offer multiple time slots. Follow up aggressively.</td>
+                            <td>Highest - These are your money appointments</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🌡️ WARM (1-6 months)</strong></td>
+                            <td>Book appointment within 1-2 weeks. Educate on process. Add to regular follow-up schedule.</td>
+                            <td>Medium - Still valuable, set proper expectations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>❄️ COLD (6-12+ months)</strong></td>
+                            <td>Add to nurture list. Monthly check-ins. Don't force an appointment if they're not ready.</td>
+                            <td>Low - Focus on relationship building</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Qualification Questions: Buyer vs. Seller</h2>
+
+            <div class="buyer-seller-tabs">
+                <button class="tab-button active" onclick="showTab(event, 'buyer')">Buyer Questions</button>
+                <button class="tab-button" onclick="showTab(event, 'seller')">Seller Questions</button>
+            </div>
+
+            <div id="buyer" class="tab-content active">
+                <h3>Essential Buyer Qualification Questions</h3>
+                <p>When qualifying buyers, you need to understand their financial readiness, must-haves, and timeline. Here are the critical questions to ask:</p>
+
+                <div class="question-bank">
+                    <div class="question-category">
+                        <h4>💰 Financial Readiness</h4>
+                        <div class="question-item">"Are you currently pre-approved with a lender?"</div>
+                        <div class="question-item">"What price range are you comfortable with?"</div>
+                        <div class="question-item">"Do you have your down payment funds available?"</div>
+                        <div class="question-item">"Are you a first-time buyer or have you purchased before?"</div>
+                        <div class="question-item">"Do you need to sell your current home first?"</div>
+                    </div>
+
+                    <div class="question-category">
+                        <h4>📍 Location & Preferences</h4>
+                        <div class="question-item">"What areas are you considering?"</div>
+                        <div class="question-item">"What's most important to you in a neighborhood?"</div>
+                        <div class="question-item">"How long is your acceptable commute?"</div>
+                        <div class="question-item">"Do you have any school district requirements?"</div>
+                        <div class="question-item">"Are you open to multiple areas or focused on one?"</div>
+                    </div>
+
+                    <div class="question-category">
+                        <h4>🏠 Property Requirements</h4>
+                        <div class="question-item">"What's your ideal home type—single family, condo, townhouse?"</div>
+                        <div class="question-item">"How many bedrooms and bathrooms do you need?"</div>
+                        <div class="question-item">"Are there any must-have features?"</div>
+                        <div class="question-item">"What are your deal-breakers?"</div>
+                        <div class="question-item">"Are you open to fixer-uppers or only move-in ready?"</div>
+                    </div>
+
+                    <div class="question-category">
+                        <h4>⏰ Timeline & Urgency</h4>
+                        <div class="question-item">"What's your ideal timeline to purchase?"</div>
+                        <div class="question-item">"Do you have a specific move-by date?"</div>
+                        <div class="question-item">"What's motivating your home search right now?"</div>
+                        <div class="question-item">"How long have you been looking?"</div>
+                        <div class="question-item">"What's preventing you from buying sooner?"</div>
+                    </div>
+
+                    <div class="question-category">
+                        <h4>🤝 Decision Making</h4>
+                        <div class="question-item">"Are you buying alone or with a partner/spouse?"</div>
+                        <div class="question-item">"Will everyone involved be available for our meeting?"</div>
+                        <div class="question-item">"Have you worked with a real estate agent before?"</div>
+                        <div class="question-item">"Are you currently working with anyone?"</div>
+                        <div class="question-item">"What questions do you have about the buying process?"</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="seller" class="tab-content">
+                <h3>Essential Seller Qualification Questions</h3>
+                <p>When qualifying sellers, focus on their motivation, timeline, property condition, and realistic expectations. Here are the questions that matter:</p>
+
+                <div class="question-bank">
+                    <div class="question-category">
+                        <h4>🎯 Motivation & Timeline</h4>
+                        <div class="question-item">"What's prompting you to sell?"</div>
+                        <div class="question-item">"What's your ideal timeline to sell?"</div>
+                        <div class="question-item">"Do you have a specific deadline to close?"</div>
+                        <div class="question-item">"Where are you moving to?"</div>
+                        <div class="question-item">"Have you already found your next home?"</div>
+                    </div>
+
+                    <div class="question-category">
+                        <h4>🏡 Property Details</h4>
+                        <div class="question-item">"Can you tell me about your property—beds, baths, square footage?"</div>
+                        <div class="question-item">"How long have you owned the property?"</div>
+                        <div class="question-item">"Is your home currently occupied or vacant?"</div>
+                        <div class="question-item">"What updates or improvements have you made?"</div>
+                        <div class="question-item">"Are there any known issues with the property?"</div>
+                    </div>
+
+                    <div class="question-category">
+                        <h4>💵 Pricing & Financial</h4>
+                        <div class="question-item">"Have you thought about your asking price?"</div>
+                        <div class="question-item">"What do you think your home is worth?"</div>
+                        <div class="question-item">"Have you researched comparable sales in your area?"</div>
+                        <div class="question-item">"Do you have a mortgage on the property?"</div>
+                        <div class="question-item">"What do you need to net from the sale?"</div>
+                    </div>
+
+                    <div class="question-category">
+                        <h4>🔧 Property Condition</h4>
+                        <div class="question-item">"Is your home ready to list or does it need work?"</div>
+                        <div class="question-item">"Are you willing to make repairs before listing?"</div>
+                        <div class="question-item">"When was the last time it was updated?"</div>
+                        <div class="question-item">"Do you need help with staging or decluttering?"</div>
+                        <div class="question-item">"Have you had any recent inspections or appraisals?"</div>
+                    </div>
+
+                    <div class="question-category">
+                        <h4>🤝 Agent Selection</h4>
+                        <div class="question-item">"Are you interviewing multiple agents?"</div>
+                        <div class="question-item">"Have you worked with a real estate agent before?"</div>
+                        <div class="question-item">"What's most important to you in choosing an agent?"</div>
+                        <div class="question-item">"Are you the sole owner or are there other decision makers?"</div>
+                        <div class="question-item">"What questions do you have about the selling process?"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Complete Question Bank: 50+ Qualification Questions</h2>
+            
+            <p>Here's your comprehensive reference guide for every qualification scenario. Bookmark this section and refer to it often:</p>
+
+            <div class="question-bank">
+                <div class="question-category">
+                    <h4>Opening & Rapport</h4>
+                    <div class="question-item">"Is now a good time to talk for a few minutes?"</div>
+                    <div class="question-item">"I see you inquired about [property/service]. What sparked your interest?"</div>
+                    <div class="question-item">"Tell me a bit about what you're looking for."</div>
+                    <div class="question-item">"How long have you been thinking about this?"</div>
+                    <div class="question-item">"What have you tried so far?"</div>
+                </div>
+
+                <div class="question-category">
+                    <h4>Motivation Probing</h4>
+                    <div class="question-item">"What's driving this decision for you right now?"</div>
+                    <div class="question-item">"If you could wave a magic wand, what would your ideal situation look like?"</div>
+                    <div class="question-item">"What's been the biggest challenge you're facing?"</div>
+                    <div class="question-item">"Why is this important to you?"</div>
+                    <div class="question-item">"What happens if you don't move forward?"</div>
+                </div>
+
+                <div class="question-category">
+                    <h4>Financial Qualification</h4>
+                    <div class="question-item">"Have you spoken with a lender yet?"</div>
+                    <div class="question-item">"What's your comfort level with monthly payments?"</div>
+                    <div class="question-item">"Are you paying cash or financing?"</div>
+                    <div class="question-item">"Have you considered your closing costs?"</div>
+                    <div class="question-item">"What's your current housing situation?"</div>
+                </div>
+
+                <div class="question-category">
+                    <h4>Urgency & Timeline</h4>
+                    <div class="question-item">"On a scale of 1-10, how urgent is this for you?"</div>
+                    <div class="question-item">"What's the ideal timeframe in your mind?"</div>
+                    <div class="question-item">"Are there any deadlines we should be aware of?"</div>
+                    <div class="question-item">"What's preventing you from moving forward today?"</div>
+                    <div class="question-item">"If we found the perfect solution, how quickly could you decide?"</div>
+                </div>
+
+                <div class="question-category">
+                    <h4>Competition & Options</h4>
+                    <div class="question-item">"Are you speaking with other agents?"</div>
+                    <div class="question-item">"What other options are you considering?"</div>
+                    <div class="question-item"
